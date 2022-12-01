@@ -1,4 +1,4 @@
-// https://adventofcode.com/2022/day/1
+// https://adventofcode.com/2022/day/1#part2
 
 const input = `11223
 6323
@@ -2257,7 +2257,7 @@ const input = `11223
 1427
 1930`;
 
-let sum = 0;
+let sum: number[] = [];
 let subSum = 0;
 
 input
@@ -2268,11 +2268,14 @@ input
       return accumulator + value;
     }, 0);
 
-    if (subSum > sum) {
-      sum = subSum;
-    }
+    sum.push(subSum);
   });
 
-console.log(sum);
+const sumOfTop3 = sum
+  .sort((a, b) => b - a)
+  .splice(0, 3)
+  .reduce((a, v) => {
+    return a + v;
+  }, 0);
 
-export {};
+console.log(sumOfTop3);
