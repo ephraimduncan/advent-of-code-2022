@@ -1,30 +1,3 @@
-// Scores
-// Rock - 1
-// Paper - 2
-// Scissors - 3
-
-// Won = 6
-// Draw = 3
-// Lost = 0
-
-// Player 1
-// Rock = A
-// Paper = B
-// Scissors = C
-
-// Player 2
-// Rock = X
-// Paper = Y
-// Scissors = Z
-
-// Rock < Paper, A > Y
-// Paper < Scissors, B > Z
-// Scissors < Rock, C > X
-
-// A = X
-// B = Y
-// C = Z
-
 const input = `B X
 C Y
 A X
@@ -2538,63 +2511,60 @@ input
     return [res, opp];
   })
   .forEach((match) => {
-    // Rock
+    // Lose
     if (match[0] === "X") {
-      score = score + 1;
+      score += 0;
 
-      // Win
-      if (match[1] === "C") {
-        score += 6;
-      }
-
-      // Draw
+      // Rock => Scissors to lose => +3
       if (match[1] === "A") {
         score += 3;
       }
 
-      // Lose
+      // Paper => Rock to lose => +1
       if (match[1] === "B") {
-        score += 0;
+        score += 1;
+      }
+
+      // Scissors => Paper to lose => +2
+      if (match[1] === "C") {
+        score += 2;
       }
     }
 
-    // Paper
     if (match[0] === "Y") {
-      score += 2;
-
-      // Win
-      if (match[1] === "A") {
-        score = score + 6;
-      }
-
-      // Draw
-      if (match[1] === "B") {
-        score += 3;
-      }
-
-      // Lose
-      if (match[1] === "C") {
-        score += 0;
-      }
-    }
-
-    // Scissors
-    if (match[0] === "Z") {
       score += 3;
 
-      // Win
-      if (match[1] === "B") {
-        score += 6;
+      // Rock => Rock to draw => +1
+      if (match[1] === "A") {
+        score += 1;
       }
 
-      // Draw
+      // Paper => Paper to draw => +2
+      if (match[1] === "B") {
+        score += 2;
+      }
+
+      // Scissors => Scissors to draw => +3
       if (match[1] === "C") {
         score += 3;
       }
+    }
 
-      // Lose
+    if (match[0] === "Z") {
+      score += 6;
+      // Rock => Paper to win => +2
       if (match[1] === "A") {
-        score += 0;
+        score += 2;
+      }
+
+      // Paper => Scissors to win => +3
+      if (match[1] === "B") {
+        score += 3;
+      }
+
+      // Scissors => Rock to win => +1
+      if (match[1] === "C") {
+        score += 1;
       }
     }
   });
