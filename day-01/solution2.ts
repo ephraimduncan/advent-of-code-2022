@@ -2279,3 +2279,5 @@ const sumOfTop3 = sum
   }, 0);
 
 console.log(sumOfTop3);
+
+export {};
